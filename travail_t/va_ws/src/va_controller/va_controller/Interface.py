@@ -13,19 +13,16 @@ from RobotControlUI import RobotControlUI
 
 class AppNode(Node):
     def __init__(self):
-        super().__init__('app_node')
+        super().__init__("app_node")
 
 
 def main():
-    # ROS init
     rclpy.init()
     node = AppNode()
 
-    # Robot Controller (publie gamma/omega)
     robot_controller = RobotController(node)
     robot_controller.set_goal(1.0, 0.0, 0.0)
 
-    # Tkinter
     root = tk.Tk()
     root.title("Robot Control Interface")
     root.geometry("600x400")
@@ -46,17 +43,19 @@ def main():
 
     root.protocol("WM_DELETE_WINDOW", on_close)
 
-    # boucle périodique (UI + ROS spin)
     def periodic():
+        # UI
         ui.update_coordinates()
         robot_controller.check_errors()
-        rclpy.spin_once(node, timeout_sec=0.0)
-        root.after(100, periodic)
 
-    root.after(100, periodic)
+        # ROS spin
+        rclpy.spin_once(node, timeout_sec=0.0)
+
+        root.after(50, periodic)
+
+    root.after(50, periodic)
     root.mainloop()
 
-    # cleanup
     node.destroy_node()
     rclpy.shutdown()
 
