@@ -38,7 +38,7 @@ class VisualizationNode(Node):
 
         for i, obs in enumerate(obstacles):
             m = Marker()
-            m.header.frame_id = "map"     # ou "odom" selon ta config TF
+            m.header.frame_id = "odom"     # ou "odom" selon ta config TF
             m.header.stamp = self.get_clock().now().to_msg()
 
             m.ns = "obstacles"

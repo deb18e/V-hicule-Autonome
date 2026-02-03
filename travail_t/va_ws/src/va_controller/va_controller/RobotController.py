@@ -31,6 +31,11 @@ def start_robot(self):
             x_goal = 0
             y_goal = 0
             theta_goal = 0
+            t0 = time.time()
+            while self.robot_status != "Stopped":
+                if time.time() - t0 > 3.0:
+                    self.x_goal = 2.0
+                    self.y_goal = 0.0
 
             limo.SetMotionCommand(linear_vel=0, steering_angle=0)
             time.sleep(1)
@@ -64,13 +69,12 @@ def start_robot(self):
                 dr = (limo.GetRightWheelOdom() - odopresright) / 1000.0
                 odopresleft = limo.GetLeftWheelOdeom()
                 odopresright = limo.GetRightWheelOdom()
+                
+                dt = 0.05
 
-                delta_theta = (dr - dl) / 0.16879
-                d = (dl + dr) / 2
-
-                x += d * math.cos(theta)
-                y += d * math.sin(theta)
-                theta += delta_theta
+                x += v * math.cos(theta) * dt
+                y += v * math.sin(theta) * dt
+                theta += (v / L) * math.tan(gamma) * dt
                 theta = (theta + math.pi) % (2 * math.pi) - math.pi
 
                 limo.SetMotionCommand(linear_vel=v, steering_angle=gamma)
