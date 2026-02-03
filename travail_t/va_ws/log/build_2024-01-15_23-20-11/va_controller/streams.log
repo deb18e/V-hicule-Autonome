@@ -1,0 +1,78 @@
+[4.682s] Invoking command in '/home/agilex/va_ws/build/va_controller': PYTHONPATH=/home/agilex/va_ws/build/va_controller/prefix_override:/home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --uninstall --editable --build-directory /home/agilex/va_ws/build/va_controller/build
+[5.816s] /home/agilex/.local/lib/python3.6/site-packages/setuptools/dist.py:726: UserWarning: Usage of dash-separated 'script-dir' will not be supported in future versions. Please use the underscore name 'script_dir' instead
+[5.817s]   % (opt, underscore_opt)
+[6.085s] running develop
+[6.090s] /home/agilex/.local/lib/python3.6/site-packages/setuptools/command/easy_install.py:159: EasyInstallDeprecationWarning: easy_install command is deprecated. Use build and pip and other standards-based tools.
+[6.091s]   EasyInstallDeprecationWarning,
+[6.096s] /home/agilex/.local/lib/python3.6/site-packages/setuptools/command/install.py:37: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[6.097s]   setuptools.SetuptoolsDeprecationWarning,
+[6.415s] /home/agilex/.local/lib/python3.6/site-packages/pkg_resources/__init__.py:119: PkgResourcesDeprecationWarning: 0.18ubuntu0.18.04.1 is an invalid version and will not be supported in a future release
+[6.416s]   PkgResourcesDeprecationWarning,
+[6.967s] Removing /home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va-controller.egg-link (link to .)
+[7.100s] Invoked command in '/home/agilex/va_ws/build/va_controller' returned '0': PYTHONPATH=/home/agilex/va_ws/build/va_controller/prefix_override:/home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --uninstall --editable --build-directory /home/agilex/va_ws/build/va_controller/build
+[7.115s] Invoking command in '/home/agilex/va_ws/src/va_controller': PYTHONPATH=/home/agilex/va_ws/build/va_controller/prefix_override:/home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/va_controller build --build-base /home/agilex/va_ws/build/va_controller/build install --record /home/agilex/va_ws/build/va_controller/install.log --install-scripts $base/lib/va_controller --single-version-externally-managed
+[8.528s] /home/agilex/.local/lib/python3.6/site-packages/setuptools/dist.py:726: UserWarning: Usage of dash-separated 'script-dir' will not be supported in future versions. Please use the underscore name 'script_dir' instead
+[8.529s]   % (opt, underscore_opt)
+[8.712s] running egg_info
+[8.716s] writing ../../build/va_controller/va_controller.egg-info/PKG-INFO
+[8.717s] writing dependency_links to ../../build/va_controller/va_controller.egg-info/dependency_links.txt
+[8.718s] writing entry points to ../../build/va_controller/va_controller.egg-info/entry_points.txt
+[8.718s] writing requirements to ../../build/va_controller/va_controller.egg-info/requires.txt
+[8.719s] writing top-level names to ../../build/va_controller/va_controller.egg-info/top_level.txt
+[8.728s] reading manifest file '../../build/va_controller/va_controller.egg-info/SOURCES.txt'
+[8.736s] writing manifest file '../../build/va_controller/va_controller.egg-info/SOURCES.txt'
+[8.736s] running build
+[8.737s] running build_py
+[8.739s] copying va_controller/algonavi.py -> /home/agilex/va_ws/build/va_controller/build/lib/va_controller
+[8.739s] copying va_controller/nouv.py -> /home/agilex/va_ws/build/va_controller/build/lib/va_controller
+[8.740s] copying va_controller/__init__.py -> /home/agilex/va_ws/build/va_controller/build/lib/va_controller
+[8.741s] copying va_controller/vehiculeautonome.py -> /home/agilex/va_ws/build/va_controller/build/lib/va_controller
+[8.741s] copying va_controller/Sensor.py -> /home/agilex/va_ws/build/va_controller/build/lib/va_controller
+[8.742s] copying va_controller/interfaceprincipale.py -> /home/agilex/va_ws/build/va_controller/build/lib/va_controller
+[8.743s] copying va_controller/interface.py -> /home/agilex/va_ws/build/va_controller/build/lib/va_controller
+[8.744s] copying va_controller/interfacenode.py -> /home/agilex/va_ws/build/va_controller/build/lib/va_controller
+[8.745s] copying va_controller/turtlesimmode.py -> /home/agilex/va_ws/build/va_controller/build/lib/va_controller
+[8.746s] copying va_controller/control.py -> /home/agilex/va_ws/build/va_controller/build/lib/va_controller
+[8.747s] copying va_controller/Bob.py -> /home/agilex/va_ws/build/va_controller/build/lib/va_controller
+[8.747s] copying va_controller/test2.py -> /home/agilex/va_ws/build/va_controller/build/lib/va_controller
+[8.748s] copying va_controller/test.py -> /home/agilex/va_ws/build/va_controller/build/lib/va_controller
+[8.748s] copying va_controller/limomove.py -> /home/agilex/va_ws/build/va_controller/build/lib/va_controller
+[8.750s] running install
+[8.750s] /home/agilex/.local/lib/python3.6/site-packages/setuptools/command/install.py:37: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[8.751s]   setuptools.SetuptoolsDeprecationWarning,
+[8.752s] running install_lib
+[8.755s] copying /home/agilex/va_ws/build/va_controller/build/lib/va_controller/algonavi.py -> /home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va_controller
+[8.756s] copying /home/agilex/va_ws/build/va_controller/build/lib/va_controller/nouv.py -> /home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va_controller
+[8.757s] copying /home/agilex/va_ws/build/va_controller/build/lib/va_controller/__init__.py -> /home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va_controller
+[8.757s] copying /home/agilex/va_ws/build/va_controller/build/lib/va_controller/vehiculeautonome.py -> /home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va_controller
+[8.758s] copying /home/agilex/va_ws/build/va_controller/build/lib/va_controller/Sensor.py -> /home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va_controller
+[8.758s] copying /home/agilex/va_ws/build/va_controller/build/lib/va_controller/interfaceprincipale.py -> /home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va_controller
+[8.759s] copying /home/agilex/va_ws/build/va_controller/build/lib/va_controller/interface.py -> /home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va_controller
+[8.759s] copying /home/agilex/va_ws/build/va_controller/build/lib/va_controller/interfacenode.py -> /home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va_controller
+[8.760s] copying /home/agilex/va_ws/build/va_controller/build/lib/va_controller/turtlesimmode.py -> /home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va_controller
+[8.761s] copying /home/agilex/va_ws/build/va_controller/build/lib/va_controller/control.py -> /home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va_controller
+[8.762s] copying /home/agilex/va_ws/build/va_controller/build/lib/va_controller/Bob.py -> /home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va_controller
+[8.762s] copying /home/agilex/va_ws/build/va_controller/build/lib/va_controller/test2.py -> /home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va_controller
+[8.763s] copying /home/agilex/va_ws/build/va_controller/build/lib/va_controller/test.py -> /home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va_controller
+[8.764s] copying /home/agilex/va_ws/build/va_controller/build/lib/va_controller/limomove.py -> /home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va_controller
+[8.765s] byte-compiling /home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va_controller/algonavi.py to algonavi.cpython-36.pyc
+[8.769s] byte-compiling /home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va_controller/nouv.py to nouv.cpython-36.pyc
+[8.776s] byte-compiling /home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va_controller/__init__.py to __init__.cpython-36.pyc
+[8.777s] byte-compiling /home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va_controller/vehiculeautonome.py to vehiculeautonome.cpython-36.pyc
+[8.784s] byte-compiling /home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va_controller/Sensor.py to Sensor.cpython-36.pyc
+[8.786s] byte-compiling /home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va_controller/interfaceprincipale.py to interfaceprincipale.cpython-36.pyc
+[8.787s] byte-compiling /home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va_controller/interface.py to interface.cpython-36.pyc
+[8.794s] byte-compiling /home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va_controller/interfacenode.py to interfacenode.cpython-36.pyc
+[8.800s] byte-compiling /home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va_controller/turtlesimmode.py to turtlesimmode.cpython-36.pyc
+[8.802s] byte-compiling /home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va_controller/control.py to control.cpython-36.pyc
+[8.804s] byte-compiling /home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va_controller/Bob.py to Bob.cpython-36.pyc
+[8.811s] byte-compiling /home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va_controller/test2.py to test2.cpython-36.pyc
+[8.813s] byte-compiling /home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va_controller/test.py to test.cpython-36.pyc
+[8.820s] byte-compiling /home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va_controller/limomove.py to limomove.cpython-36.pyc
+[8.822s] running install_data
+[8.825s] running install_egg_info
+[8.836s] Copying ../../build/va_controller/va_controller.egg-info to /home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va_controller-0.0.0-py3.6.egg-info
+[8.844s] running install_scripts
+[8.930s] Installing mouvement script to /home/agilex/va_ws/install/va_controller/lib/va_controller
+[8.933s] writing list of installed files to '/home/agilex/va_ws/build/va_controller/install.log'
+[9.053s] Invoked command in '/home/agilex/va_ws/src/va_controller' returned '0': PYTHONPATH=/home/agilex/va_ws/build/va_controller/prefix_override:/home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/va_controller build --build-base /home/agilex/va_ws/build/va_controller/build install --record /home/agilex/va_ws/build/va_controller/install.log --install-scripts $base/lib/va_controller --single-version-externally-managed

@@ -1,0 +1,28 @@
+[4.579s] Invoking command in '/home/agilex/va_ws/src/va_controller': PYTHONPATH=/home/agilex/va_ws/build/va_controller/prefix_override:/home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/va_controller build --build-base /home/agilex/va_ws/build/va_controller/build install --record /home/agilex/va_ws/build/va_controller/install.log --install-scripts $base/lib/va_controller --single-version-externally-managed
+[5.998s] /home/agilex/.local/lib/python3.6/site-packages/setuptools/dist.py:726: UserWarning: Usage of dash-separated 'script-dir' will not be supported in future versions. Please use the underscore name 'script_dir' instead
+[5.999s]   % (opt, underscore_opt)
+[6.186s] running egg_info
+[6.189s] writing ../../build/va_controller/va_controller.egg-info/PKG-INFO
+[6.193s] writing dependency_links to ../../build/va_controller/va_controller.egg-info/dependency_links.txt
+[6.194s] writing entry points to ../../build/va_controller/va_controller.egg-info/entry_points.txt
+[6.195s] writing requirements to ../../build/va_controller/va_controller.egg-info/requires.txt
+[6.195s] writing top-level names to ../../build/va_controller/va_controller.egg-info/top_level.txt
+[6.205s] reading manifest file '../../build/va_controller/va_controller.egg-info/SOURCES.txt'
+[6.213s] writing manifest file '../../build/va_controller/va_controller.egg-info/SOURCES.txt'
+[6.214s] running build
+[6.214s] running build_py
+[6.215s] copying va_controller/Interface.py -> /home/agilex/va_ws/build/va_controller/build/lib/va_controller
+[6.217s] running install
+[6.218s] /home/agilex/.local/lib/python3.6/site-packages/setuptools/command/install.py:37: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[6.219s]   setuptools.SetuptoolsDeprecationWarning,
+[6.220s] running install_lib
+[6.224s] copying /home/agilex/va_ws/build/va_controller/build/lib/va_controller/Interface.py -> /home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va_controller
+[6.229s] byte-compiling /home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va_controller/Interface.py to Interface.cpython-36.pyc
+[6.240s] running install_data
+[6.245s] running install_egg_info
+[6.256s] removing '/home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va_controller-0.0.0-py3.6.egg-info' (and everything under it)
+[6.257s] Copying ../../build/va_controller/va_controller.egg-info to /home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va_controller-0.0.0-py3.6.egg-info
+[6.267s] running install_scripts
+[6.366s] Installing mouvement script to /home/agilex/va_ws/install/va_controller/lib/va_controller
+[6.369s] writing list of installed files to '/home/agilex/va_ws/build/va_controller/install.log'
+[6.481s] Invoked command in '/home/agilex/va_ws/src/va_controller' returned '0': PYTHONPATH=/home/agilex/va_ws/build/va_controller/prefix_override:/home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/va_controller build --build-base /home/agilex/va_ws/build/va_controller/build install --record /home/agilex/va_ws/build/va_controller/install.log --install-scripts $base/lib/va_controller --single-version-externally-managed

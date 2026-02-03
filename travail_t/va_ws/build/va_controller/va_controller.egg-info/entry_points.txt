@@ -1,0 +1,3 @@
+[console_scripts]
+mouvement = va_controller.control:main
+

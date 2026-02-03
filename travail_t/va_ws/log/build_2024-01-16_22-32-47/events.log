@@ -1,0 +1,95 @@
+[0.000000] (-) TimerEvent: {}
+[0.000453] (va_controller) JobQueued: {'identifier': 'va_controller', 'dependencies': OrderedDict()}
+[0.002131] (va_controller) JobStarted: {'identifier': 'va_controller'}
+[0.099111] (-) TimerEvent: {}
+[0.200393] (-) TimerEvent: {}
+[0.301201] (-) TimerEvent: {}
+[0.402059] (-) TimerEvent: {}
+[0.502900] (-) TimerEvent: {}
+[0.603746] (-) TimerEvent: {}
+[0.704467] (-) TimerEvent: {}
+[0.805230] (-) TimerEvent: {}
+[0.907018] (-) TimerEvent: {}
+[1.007932] (-) TimerEvent: {}
+[1.108641] (-) TimerEvent: {}
+[1.211133] (-) TimerEvent: {}
+[1.311890] (-) TimerEvent: {}
+[1.412817] (-) TimerEvent: {}
+[1.513568] (-) TimerEvent: {}
+[1.614261] (-) TimerEvent: {}
+[1.714959] (-) TimerEvent: {}
+[1.817044] (-) TimerEvent: {}
+[1.918734] (-) TimerEvent: {}
+[2.020250] (-) TimerEvent: {}
+[2.121037] (-) TimerEvent: {}
+[2.221847] (-) TimerEvent: {}
+[2.322557] (-) TimerEvent: {}
+[2.423278] (-) TimerEvent: {}
+[2.524004] (-) TimerEvent: {}
+[2.624722] (-) TimerEvent: {}
+[2.725469] (-) TimerEvent: {}
+[2.826204] (-) TimerEvent: {}
+[2.926875] (-) TimerEvent: {}
+[3.027599] (-) TimerEvent: {}
+[3.128312] (-) TimerEvent: {}
+[3.229309] (-) TimerEvent: {}
+[3.331603] (-) TimerEvent: {}
+[3.432405] (-) TimerEvent: {}
+[3.533257] (-) TimerEvent: {}
+[3.634047] (-) TimerEvent: {}
+[3.734855] (-) TimerEvent: {}
+[3.835579] (-) TimerEvent: {}
+[3.937960] (-) TimerEvent: {}
+[4.045575] (-) TimerEvent: {}
+[4.146589] (-) TimerEvent: {}
+[4.238785] (va_controller) Command: {'cmd': ['/usr/bin/python3', 'setup.py', 'egg_info', '--egg-base', '../../build/va_controller', 'build', '--build-base', '/home/agilex/va_ws/build/va_controller/build', 'install', '--record', '/home/agilex/va_ws/build/va_controller/install.log', '--install-scripts', '$base/lib/va_controller', '--single-version-externally-managed'], 'cwd': '/home/agilex/va_ws/src/va_controller', 'env': {'JETSON_BOARD': 'P3449-0000', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'JETSON_TYPE': 'Nano', 'UNITY_DEFAULT_PROFILE': 'unity', 'GTK_CSD': '0', 'USER': 'agilex', 'UNITY_HAS_3D_SUPPORT': 'true', 'LANGUAGE': 'fr_FR:es_ES:es_VE:zh_CN:zh_HK:zh_TW:fr_CA', 'LC_TIME': 'es_ES.UTF-8', 'TEXTDOMAIN': 'im-config', 'JETSON_CUDA': '10.2.300', 'COMPIZ_CONFIG_PROFILE': 'ubuntu', 'XDG_SESSION_TYPE': 'x11', 'GNOME_SESSION_XDG_SESSION_PATH': '', 'LD_LIBRARY_PATH': '/usr/local/cuda-10.2/lib64:/home/agilex/agx_ws/install/limo_msgs/lib:/usr/lib/aarch64-linux-gnu/gazebo-9/plugins:/opt/ros/eloquent/opt/yaml_cpp_vendor/lib:/opt/ros/eloquent/opt/rviz_ogre_vendor/lib:/opt/ros/eloquent/lib/aarch64-linux-gnu:/opt/ros/eloquent/lib', 'SHLVL': '2', 'OLDPWD': '/home/agilex', 'QT4_IM_MODULE': 'xim', 'HOME': '/home/agilex', 'DESKTOP_SESSION': 'unity', 'JETSON_L4T': '32.6.1', 'JETSON_TENSORRT': 'NOT_INSTALLED', 'GTK_MODULES': 'gail:atk-bridge:unity-gtk-module', 'ROS_PYTHON_VERSION': '3', 'LC_MONETARY': 'es_ES.UTF-8', 'MANAGERPID': '6137', 'JETSON_VISIONWORKS': '1.6.0.501', 'JETSON_OPENCV_CUDA': 'NO', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'JETSON_CHIP_ID': '33', 'MANDATORY_PATH': '/usr/share/gconf/unity.mandatory.path', 'COLCON_PREFIX_PATH': '/home/agilex/va_ws/install:/home/agilex/agx_ws/install', 'IM_CONFIG_PHASE': '2', 'ROS_DISTRO': 'eloquent', 'LOGNAME': 'agilex', 'GTK_IM_MODULE': 'ibus', 'JOURNAL_STREAM': '8:41235', 'JETSON_SERIAL_NUMBER': '1423522028811', 'JETSON_MODULE': 'P3448-0002', 'JETSON_CUDNN': 'NOT_INSTALLED', '_': '/usr/bin/colcon', 'DEFAULTS_PATH': '/usr/share/gconf/unity.default.path', 'JETSON_CODENAME': 'porg', 'ROS_VERSION': '2', 'GAZEBO_MODEL_PATH': '/home/agilex/ros2_ws/src/turtlebot3/turtlebot3_simulations/turtlebot3_gazebo/models', 'USERNAME': 'agilex', 'TERM': 'xterm-256color', 'ROS_LOCALHOST_ONLY': '0', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'WINDOWPATH': '1', 'PATH': '/usr/local/cuda-10.2/bin:/opt/ros/eloquent/bin:/home/agilex/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'INVOCATION_ID': 'c464bafc39cc4e518c1070e4942301fe', 'JETSON_OPENCV': '3.2.0', 'PAPERSIZE': 'a4', 'SESSION_MANAGER': 'local/agilex:@/tmp/.ICE-unix/7824,unix/agilex:/tmp/.ICE-unix/7824', 'XDG_MENU_PREFIX': 'gnome-', 'GNOME_TERMINAL_SCREEN': '/org/gnome/Terminal/screen/e0fd4066_15c3_49d5_9fef_1fb5d84acd9f', 'LC_ADDRESS': 'es_ES.UTF-8', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':0', 'COMPIZ_BIN_PATH': '/usr/bin/', 'LANG': 'fr_FR.UTF-8', 'JETSON_MACHINE': 'NVIDIA Jetson Nano', 'JETSON_L4T_REVISION': '6.1', 'XDG_CURRENT_DESKTOP': 'Unity:Unity7:ubuntu', 'LC_TELEPHONE': 'es_ES.UTF-8', 'LD_PRELOAD': 'libgtk3-nocsd.so.0', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'JETSON_SOC': 'tegra210', 'XDG_SESSION_DESKTOP': 'unity', 'XMODIFIERS': '@im=ibus', 'GNOME_TERMINAL_SERVICE': ':1.245', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'AMENT_PREFIX_PATH': '/home/agilex/va_ws/install/va_controller:/home/agilex/agx_ws/install/ydlidar_ros2_driver:/home/agilex/agx_ws/install/voice_control:/home/agilex/agx_ws/install/limo_bringup:/home/agilex/agx_ws/install/limo_base:/home/agilex/agx_ws/install/limo_msgs:/home/agilex/agx_ws/install/limo_description:/opt/ros/eloquent', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'ROS_DOMAIN_ID': '30', 'SSH_AGENT_LAUNCHER': 'gnome-keyring', 'LC_NAME': 'es_ES.UTF-8', 'SHELL': '/bin/bash', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'unity', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'JETSON_BOARDIDS': '3448', 'LC_MEASUREMENT': 'es_ES.UTF-8', 'JETSON_L4T_RELEASE': '32', 'TEXTDOMAINDIR': '/usr/share/locale/', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', 'LC_IDENTIFICATION': 'es_ES.UTF-8', 'JETSON_VULKAN_INFO': '1.2.70', 'QT_IM_MODULE': 'ibus', 'LC_ALL': 'en_US.UTF-8', 'JETSON_CUDA_ARCH_BIN': '5.3', 'TURTLEBOT3_MODEL': 'waffle', 'PWD': '/home/agilex/va_ws/build/va_controller', 'CLUTTER_IM_MODULE': 'xim', 'XDG_DATA_DIRS': '/usr/share/unity:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-unity:/etc/xdg', 'LC_NUMERIC': 'es_ES.UTF-8', 'PYTHONPATH': '/home/agilex/va_ws/build/va_controller/prefix_override:/home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages:/home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages:/home/agilex/agx_ws/install/voice_control/lib/python3.6/site-packages:/home/agilex/agx_ws/install/limo_msgs/lib/python3.6/site-packages:/opt/ros/eloquent/lib/python3.6/site-packages', 'JETSON_VPI': 'ii libnvvpi1 1.1.12 arm64 NVIDIA Vision Programming Interface library', 'LC_PAPER': 'es_ES.UTF-8', 'COLCON': '1', 'JETSON_JETPACK': '4.6', 'VTE_VERSION': '5202', 'CMAKE_PREFIX_PATH': '/home/agilex/agx_ws/install/ydlidar_ros2_driver:/home/agilex/agx_ws/install/limo_bringup:/home/agilex/agx_ws/install/limo_base:/home/agilex/agx_ws/install/limo_msgs:/home/agilex/agx_ws/install/limo_description'}, 'shell': False}
+[4.249646] (-) TimerEvent: {}
+[4.350704] (-) TimerEvent: {}
+[4.452074] (-) TimerEvent: {}
+[4.553642] (-) TimerEvent: {}
+[4.654530] (-) TimerEvent: {}
+[4.760160] (-) TimerEvent: {}
+[4.861265] (-) TimerEvent: {}
+[4.962201] (-) TimerEvent: {}
+[5.063281] (-) TimerEvent: {}
+[5.164064] (-) TimerEvent: {}
+[5.264822] (-) TimerEvent: {}
+[5.365532] (-) TimerEvent: {}
+[5.466229] (-) TimerEvent: {}
+[5.567020] (-) TimerEvent: {}
+[5.669570] (-) TimerEvent: {}
+[5.770255] (-) TimerEvent: {}
+[5.796777] (va_controller) StderrLine: {'line': b"/home/agilex/.local/lib/python3.6/site-packages/setuptools/dist.py:726: UserWarning: Usage of dash-separated 'script-dir' will not be supported in future versions. Please use the underscore name 'script_dir' instead\n"}
+[5.797995] (va_controller) StderrLine: {'line': b'  % (opt, underscore_opt)\n'}
+[5.870457] (-) TimerEvent: {}
+[5.971317] (-) TimerEvent: {}
+[5.988479] (va_controller) StdoutLine: {'line': b'running egg_info\n'}
+[5.991777] (va_controller) StdoutLine: {'line': b'writing ../../build/va_controller/va_controller.egg-info/PKG-INFO\n'}
+[5.992710] (va_controller) StdoutLine: {'line': b'writing dependency_links to ../../build/va_controller/va_controller.egg-info/dependency_links.txt\n'}
+[5.993436] (va_controller) StdoutLine: {'line': b'writing entry points to ../../build/va_controller/va_controller.egg-info/entry_points.txt\n'}
+[5.994188] (va_controller) StdoutLine: {'line': b'writing requirements to ../../build/va_controller/va_controller.egg-info/requires.txt\n'}
+[5.994866] (va_controller) StdoutLine: {'line': b'writing top-level names to ../../build/va_controller/va_controller.egg-info/top_level.txt\n'}
+[6.003733] (va_controller) StdoutLine: {'line': b"reading manifest file '../../build/va_controller/va_controller.egg-info/SOURCES.txt'\n"}
+[6.010912] (va_controller) StdoutLine: {'line': b"writing manifest file '../../build/va_controller/va_controller.egg-info/SOURCES.txt'\n"}
+[6.011985] (va_controller) StdoutLine: {'line': b'running build\n'}
+[6.012686] (va_controller) StdoutLine: {'line': b'running build_py\n'}
+[6.015628] (va_controller) StdoutLine: {'line': b'copying va_controller/control.py -> /home/agilex/va_ws/build/va_controller/build/lib/va_controller\n'}
+[6.017941] (va_controller) StdoutLine: {'line': b'running install\n'}
+[6.019300] (va_controller) StderrLine: {'line': b'/home/agilex/.local/lib/python3.6/site-packages/setuptools/command/install.py:37: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.\n'}
+[6.019890] (va_controller) StderrLine: {'line': b'  setuptools.SetuptoolsDeprecationWarning,\n'}
+[6.020481] (va_controller) StdoutLine: {'line': b'running install_lib\n'}
+[6.026537] (va_controller) StdoutLine: {'line': b'copying /home/agilex/va_ws/build/va_controller/build/lib/va_controller/control.py -> /home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va_controller\n'}
+[6.031226] (va_controller) StdoutLine: {'line': b'byte-compiling /home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va_controller/control.py to control.cpython-36.pyc\n'}
+[6.034000] (va_controller) StdoutLine: {'line': b'running install_data\n'}
+[6.036696] (va_controller) StdoutLine: {'line': b'running install_egg_info\n'}
+[6.047148] (va_controller) StdoutLine: {'line': b"removing '/home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va_controller-0.0.0-py3.6.egg-info' (and everything under it)\n"}
+[6.048568] (va_controller) StdoutLine: {'line': b'Copying ../../build/va_controller/va_controller.egg-info to /home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va_controller-0.0.0-py3.6.egg-info\n'}
+[6.054187] (va_controller) StdoutLine: {'line': b'running install_scripts\n'}
+[6.071557] (-) TimerEvent: {}
+[6.142801] (va_controller) StdoutLine: {'line': b'Installing mouvement script to /home/agilex/va_ws/install/va_controller/lib/va_controller\n'}
+[6.144910] (va_controller) StdoutLine: {'line': b"writing list of installed files to '/home/agilex/va_ws/build/va_controller/install.log'\n"}
+[6.171746] (-) TimerEvent: {}
+[6.264235] (va_controller) CommandEnded: {'returncode': 0}
+[6.271967] (-) TimerEvent: {}
+[6.333685] (va_controller) JobEnded: {'identifier': 'va_controller', 'rc': 0}
+[6.338945] (-) EventReactorShutdown: {}

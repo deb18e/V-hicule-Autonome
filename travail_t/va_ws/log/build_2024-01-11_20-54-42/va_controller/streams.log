@@ -1,0 +1,25 @@
+[4.377s] Invoking command in '/home/agilex/va_ws/build/va_controller': PYTHONPATH=/home/agilex/va_ws/build/va_controller/prefix_override:/home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/agilex/va_ws/build/va_controller/build --no-deps install_data
+[5.797s] /home/agilex/.local/lib/python3.6/site-packages/setuptools/dist.py:726: UserWarning: Usage of dash-separated 'script-dir' will not be supported in future versions. Please use the underscore name 'script_dir' instead
+[5.798s]   % (opt, underscore_opt)
+[6.071s] running develop
+[6.074s] /home/agilex/.local/lib/python3.6/site-packages/setuptools/command/easy_install.py:159: EasyInstallDeprecationWarning: easy_install command is deprecated. Use build and pip and other standards-based tools.
+[6.074s]   EasyInstallDeprecationWarning,
+[6.080s] /home/agilex/.local/lib/python3.6/site-packages/setuptools/command/install.py:37: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[6.081s]   setuptools.SetuptoolsDeprecationWarning,
+[6.376s] /home/agilex/.local/lib/python3.6/site-packages/pkg_resources/__init__.py:119: PkgResourcesDeprecationWarning: 0.18ubuntu0.18.04.1 is an invalid version and will not be supported in a future release
+[6.376s]   PkgResourcesDeprecationWarning,
+[6.901s] running egg_info
+[6.902s] writing va_controller.egg-info/PKG-INFO
+[6.903s] writing dependency_links to va_controller.egg-info/dependency_links.txt
+[6.904s] writing entry points to va_controller.egg-info/entry_points.txt
+[6.905s] writing requirements to va_controller.egg-info/requires.txt
+[6.905s] writing top-level names to va_controller.egg-info/top_level.txt
+[6.913s] reading manifest file 'va_controller.egg-info/SOURCES.txt'
+[6.919s] writing manifest file 'va_controller.egg-info/SOURCES.txt'
+[7.185s] running build_ext
+[7.188s] Creating /home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va-controller.egg-link (link to .)
+[7.191s] Installing mouvement script to /home/agilex/va_ws/install/va_controller/lib/va_controller
+[7.193s] 
+[7.193s] Installed /home/agilex/va_ws/build/va_controller
+[7.194s] running install_data
+[7.342s] Invoked command in '/home/agilex/va_ws/build/va_controller' returned '0': PYTHONPATH=/home/agilex/va_ws/build/va_controller/prefix_override:/home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/agilex/va_ws/build/va_controller/build --no-deps install_data

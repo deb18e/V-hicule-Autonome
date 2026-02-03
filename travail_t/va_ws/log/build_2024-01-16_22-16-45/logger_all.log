@@ -1,0 +1,128 @@
+[1.829s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build']
+[1.830s] DEBUG:colcon:Parsed command line arguments: Namespace(allow_overriding=[], ament_cmake_args=None, base_paths=['.'], build_base='build', catkin_cmake_args=None, catkin_skip_building_tests=False, cmake_args=None, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, cmake_target=None, cmake_target_skip_unavailable=False, continue_on_error=False, event_handlers=None, executor='parallel', ignore_user_meta=False, install_base='install', log_base=None, log_level=None, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x7f7938ff60>>, merge_install=False, metas=['./colcon.meta'], packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_end=None, packages_ignore=None, packages_ignore_regex=None, packages_select=None, packages_select_build_failed=False, packages_select_by_dep=None, packages_select_regex=None, packages_select_test_failures=False, packages_skip=None, packages_skip_build_finished=False, packages_skip_by_dep=None, packages_skip_regex=None, packages_skip_test_passed=False, packages_skip_up_to=None, packages_start=None, packages_up_to=None, packages_up_to_regex=None, parallel_workers=4, paths=None, symlink_install=False, test_result_base=None, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x7f7938ff60>, verb_name='build', verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0x7f79247978>)
+[2.019s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[2.020s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[2.020s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[2.021s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[2.021s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[2.022s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[2.023s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/agilex/va_ws'
+[2.023s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[2.024s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[2.024s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[2.025s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[2.025s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[2.025s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[2.025s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[2.025s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[2.026s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[2.431s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[2.432s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[2.432s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[2.432s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[2.432s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[2.433s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[2.433s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[2.434s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[2.435s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[2.436s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[2.436s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[2.437s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[2.437s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[2.438s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[2.438s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[2.438s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[2.439s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[2.439s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[2.439s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[2.439s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[2.440s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[2.440s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[2.440s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[2.441s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[2.441s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[2.441s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[2.441s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[2.441s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[2.442s] Level 1:colcon.colcon_core.package_identification:_identify(src/va_controller) by extensions ['ignore', 'ignore_ament_install']
+[2.442s] Level 1:colcon.colcon_core.package_identification:_identify(src/va_controller) by extension 'ignore'
+[2.443s] Level 1:colcon.colcon_core.package_identification:_identify(src/va_controller) by extension 'ignore_ament_install'
+[2.443s] Level 1:colcon.colcon_core.package_identification:_identify(src/va_controller) by extensions ['colcon_pkg']
+[2.443s] Level 1:colcon.colcon_core.package_identification:_identify(src/va_controller) by extension 'colcon_pkg'
+[2.443s] Level 1:colcon.colcon_core.package_identification:_identify(src/va_controller) by extensions ['colcon_meta']
+[2.444s] Level 1:colcon.colcon_core.package_identification:_identify(src/va_controller) by extension 'colcon_meta'
+[2.444s] Level 1:colcon.colcon_core.package_identification:_identify(src/va_controller) by extensions ['ros']
+[2.444s] Level 1:colcon.colcon_core.package_identification:_identify(src/va_controller) by extension 'ros'
+[2.457s] DEBUG:colcon.colcon_core.package_identification:Package 'src/va_controller' with type 'ros.ament_python' and name 'va_controller'
+[2.457s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[2.459s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[2.459s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[2.459s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[2.460s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[2.577s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[2.578s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[2.598s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 1 installed packages in /home/agilex/va_ws/install
+[2.602s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 6 installed packages in /home/agilex/agx_ws/install
+[2.612s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 282 installed packages in /opt/ros/eloquent
+[2.626s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[3.098s] Level 5:colcon.colcon_core.verb:set package 'va_controller' build argument 'cmake_args' from command line to 'None'
+[3.098s] Level 5:colcon.colcon_core.verb:set package 'va_controller' build argument 'cmake_target' from command line to 'None'
+[3.098s] Level 5:colcon.colcon_core.verb:set package 'va_controller' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[3.098s] Level 5:colcon.colcon_core.verb:set package 'va_controller' build argument 'cmake_clean_cache' from command line to 'False'
+[3.099s] Level 5:colcon.colcon_core.verb:set package 'va_controller' build argument 'cmake_clean_first' from command line to 'False'
+[3.099s] Level 5:colcon.colcon_core.verb:set package 'va_controller' build argument 'cmake_force_configure' from command line to 'False'
+[3.099s] Level 5:colcon.colcon_core.verb:set package 'va_controller' build argument 'ament_cmake_args' from command line to 'None'
+[3.099s] Level 5:colcon.colcon_core.verb:set package 'va_controller' build argument 'catkin_cmake_args' from command line to 'None'
+[3.099s] Level 5:colcon.colcon_core.verb:set package 'va_controller' build argument 'catkin_skip_building_tests' from command line to 'False'
+[3.099s] DEBUG:colcon.colcon_core.verb:Building package 'va_controller' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/agilex/va_ws/build/va_controller', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/agilex/va_ws/install/va_controller', 'merge_install': False, 'path': '/home/agilex/va_ws/src/va_controller', 'symlink_install': False, 'test_result_base': None}
+[3.101s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[3.107s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[3.108s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/agilex/va_ws/src/va_controller' with build type 'ament_python'
+[3.109s] Level 1:colcon.colcon_core.shell:create_environment_hook('va_controller', 'ament_prefix_path')
+[3.131s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[3.133s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/agilex/va_ws/install/va_controller/share/va_controller/hook/ament_prefix_path.ps1'
+[3.138s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/agilex/va_ws/install/va_controller/share/va_controller/hook/ament_prefix_path.dsv'
+[3.142s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/agilex/va_ws/install/va_controller/share/va_controller/hook/ament_prefix_path.sh'
+[3.150s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[3.150s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[4.908s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/agilex/va_ws/src/va_controller'
+[4.911s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[4.911s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[7.452s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/agilex/va_ws/src/va_controller': PYTHONPATH=/home/agilex/va_ws/build/va_controller/prefix_override:/home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/va_controller build --build-base /home/agilex/va_ws/build/va_controller/build install --record /home/agilex/va_ws/build/va_controller/install.log --install-scripts $base/lib/va_controller --single-version-externally-managed
+[9.356s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/agilex/va_ws/src/va_controller' returned '0': PYTHONPATH=/home/agilex/va_ws/build/va_controller/prefix_override:/home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/va_controller build --build-base /home/agilex/va_ws/build/va_controller/build install --record /home/agilex/va_ws/build/va_controller/install.log --install-scripts $base/lib/va_controller --single-version-externally-managed
+[9.381s] Level 1:colcon.colcon_core.environment:checking '/home/agilex/va_ws/install/va_controller' for CMake module files
+[9.384s] Level 1:colcon.colcon_core.environment:checking '/home/agilex/va_ws/install/va_controller' for CMake config files
+[9.389s] Level 1:colcon.colcon_core.environment:checking '/home/agilex/va_ws/install/va_controller/lib'
+[9.390s] Level 1:colcon.colcon_core.environment:checking '/home/agilex/va_ws/install/va_controller/bin'
+[9.391s] Level 1:colcon.colcon_core.environment:checking '/home/agilex/va_ws/install/va_controller/lib/pkgconfig/va_controller.pc'
+[9.392s] Level 1:colcon.colcon_core.environment:checking '/home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages'
+[9.392s] Level 1:colcon.colcon_core.shell:create_environment_hook('va_controller', 'pythonpath')
+[9.394s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/agilex/va_ws/install/va_controller/share/va_controller/hook/pythonpath.ps1'
+[9.396s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/agilex/va_ws/install/va_controller/share/va_controller/hook/pythonpath.dsv'
+[9.398s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/agilex/va_ws/install/va_controller/share/va_controller/hook/pythonpath.sh'
+[9.401s] Level 1:colcon.colcon_core.environment:checking '/home/agilex/va_ws/install/va_controller/bin'
+[9.401s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(va_controller)
+[9.404s] INFO:colcon.colcon_core.shell:Creating package script '/home/agilex/va_ws/install/va_controller/share/va_controller/package.ps1'
+[9.410s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/agilex/va_ws/install/va_controller/share/va_controller/package.dsv'
+[9.413s] INFO:colcon.colcon_core.shell:Creating package script '/home/agilex/va_ws/install/va_controller/share/va_controller/package.sh'
+[9.418s] INFO:colcon.colcon_core.shell:Creating package script '/home/agilex/va_ws/install/va_controller/share/va_controller/package.bash'
+[9.426s] INFO:colcon.colcon_core.shell:Creating package script '/home/agilex/va_ws/install/va_controller/share/va_controller/package.zsh'
+[9.431s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/agilex/va_ws/install/va_controller/share/colcon-core/packages/va_controller)
+[9.434s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[9.436s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[9.436s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[9.437s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[9.469s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[9.470s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[9.470s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[9.838s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[9.840s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/agilex/va_ws/install/local_setup.ps1'
+[9.853s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/agilex/va_ws/install/_local_setup_util_ps1.py'
+[9.869s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/agilex/va_ws/install/setup.ps1'
+[9.881s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/agilex/va_ws/install/local_setup.sh'
+[9.886s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/agilex/va_ws/install/_local_setup_util_sh.py'
+[9.890s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/agilex/va_ws/install/setup.sh'
+[9.899s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/agilex/va_ws/install/local_setup.bash'
+[9.902s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/agilex/va_ws/install/setup.bash'
+[9.912s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/agilex/va_ws/install/local_setup.zsh'
+[9.915s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/agilex/va_ws/install/setup.zsh'

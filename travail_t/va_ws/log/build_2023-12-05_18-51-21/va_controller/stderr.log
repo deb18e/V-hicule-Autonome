@@ -1,0 +1,10 @@
+/home/agilex/.local/lib/python3.6/site-packages/setuptools/dist.py:726: UserWarning: Usage of dash-separated 'script-dir' will not be supported in future versions. Please use the underscore name 'script_dir' instead
+  % (opt, underscore_opt)
+package init file 'va_controller/__init__.py' not found (or not a regular file)
+/home/agilex/.local/lib/python3.6/site-packages/setuptools/command/install.py:37: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+  setuptools.SetuptoolsDeprecationWarning,
+  File "/home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va_controller/control.py", line 9
+    class mouvement(Node)
+                        ^
+SyntaxError: invalid syntax
+

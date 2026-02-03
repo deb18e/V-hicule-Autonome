@@ -1,0 +1,23 @@
+/home/agilex/.local/lib/python3.6/site-packages/setuptools/dist.py:726: UserWarning: Usage of dash-separated 'script-dir' will not be supported in future versions. Please use the underscore name 'script_dir' instead
+  % (opt, underscore_opt)
+running develop
+/home/agilex/.local/lib/python3.6/site-packages/setuptools/command/easy_install.py:159: EasyInstallDeprecationWarning: easy_install command is deprecated. Use build and pip and other standards-based tools.
+  EasyInstallDeprecationWarning,
+/home/agilex/.local/lib/python3.6/site-packages/setuptools/command/install.py:37: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+  setuptools.SetuptoolsDeprecationWarning,
+/home/agilex/.local/lib/python3.6/site-packages/pkg_resources/__init__.py:119: PkgResourcesDeprecationWarning: 0.18ubuntu0.18.04.1 is an invalid version and will not be supported in a future release
+  PkgResourcesDeprecationWarning,
+running egg_info
+writing va_controller.egg-info/PKG-INFO
+writing dependency_links to va_controller.egg-info/dependency_links.txt
+writing entry points to va_controller.egg-info/entry_points.txt
+writing requirements to va_controller.egg-info/requires.txt
+writing top-level names to va_controller.egg-info/top_level.txt
+reading manifest file 'va_controller.egg-info/SOURCES.txt'
+writing manifest file 'va_controller.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/agilex/va_ws/install/va_controller/lib/python3.6/site-packages/va-controller.egg-link (link to .)
+Installing mouvement script to /home/agilex/va_ws/install/va_controller/lib/va_controller
+
+Installed /home/agilex/va_ws/build/va_controller
+running install_data
