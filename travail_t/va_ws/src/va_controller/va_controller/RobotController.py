@@ -1,19 +1,10 @@
-#!/usr/bin/env python3
-# coding=UTF-8
-import tkinter as tk
-from tkinter import ttk
 from tkinter import messagebox
-from PIL import Image, ImageTk
 import subprocess
-import rclpy
-from rclpy.node import Node
-from std_msgs.msg import Float64
 import math
 from pylimo import limo
 import time
 import threading
 from queue import Queue
-from tkinter import StringVar
 
 class RobotController():
     
@@ -23,10 +14,7 @@ class RobotController():
         self.queue = Queue()
         self.x_g = 0
         self.y_g = 0
-        self.theta_g = 0
-
-
-	
+        self.theta_g = 0	
 
     def start_robot(self):
 	
@@ -41,7 +29,7 @@ class RobotController():
         def robot_thread():
             try:
                 L = 0.2
-                Kphi = 0.9
+                Krho = 0.9
                 Kbeta = -2
                 Kalpha = 5
                 odopresleft = limo.GetLeftWheelOdeom()
@@ -64,14 +52,14 @@ class RobotController():
                     alpha = -beta - theta
 
                     w = Kbeta * beta + Kalpha * alpha
-                    v = Kphi * rho
+                    v = Krho * rho
                     gamma = math.atan((L * w) / v)
 
-                    if gamma > 0.488:
-                        gamma = 0.488
-                    elif gamma < -0.488:
-                        gamma = -0.488
-                    if v > 0.5:
+                    if gamma > 0.5:
+                        gamma = 0.5
+                    elif gamma < -0.5:
+                        gamma = -0.5
+                    if v > 0.3:
                         v = 0.3
                 
                     dl = (limo.GetLeftWheelOdeom() - odopresleft) / 1000.0
