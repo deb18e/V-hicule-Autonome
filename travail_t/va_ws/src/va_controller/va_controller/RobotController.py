@@ -29,69 +29,81 @@ class RobotController():
         def robot_thread():
             try:
                 L = 0.2
-                Krho = 0.9
-                Kbeta = -2
-                Kalpha = 5
-                odopresleft = limo.GetLeftWheelOdeom()
-                odopresright = limo.GetRightWheelOdom()
-                x_init = -1   
-                y_init = -1
-                theta_init = 0
-                x = x_init
-                y = y_init
-                theta = theta_init
-                limo.SetMotionCommand(linear_vel=0, steering_angle=0)
+                K_rho = 0.5
+                K_alpha = 1.5
+                K_beta = -0.6
 
+                # position initiale
+                x = -1   
+                y = -1
+                theta = 0
+
+                # objectif
+                x_goal = 0
+                y_goal = 0
+                theta_goal = 0
+
+                limo.SetMotionCommand(linear_vel=0, steering_angle=0)
                 time.sleep(1)
 
-                while (abs(x) > 0.05 or abs(y) > 0.05) and self.robot_status != "Stopped":
-                    if self.robot_status == "Stopped":
-                        break
-                    rho = math.sqrt(pow(x, 2) + pow(y, 2))
-                    beta = -math.atan(y / x)
-                    alpha = -beta - theta
+                odopresleft = limo.GetLeftWheelOdeom()
+                odopresright = limo.GetRightWheelOdom()
 
-                    w = Kbeta * beta + Kalpha * alpha
-                    v = Krho * rho
+                while self.robot_status != "Stopped":
+                    # Distance vers l'objectif
+                    rho = math.sqrt((x_goal - x)**2 + (y_goal - y)**2)
+                    if rho < 0.05:
+                        break  # proche du but
+
+                    alpha = math.atan2(y_goal - y, x_goal - x) - theta
+                    alpha = (alpha + math.pi) % (2 * math.pi) - math.pi
+                    beta = -theta - alpha
+                    beta = (beta + math.pi) % (2 * math.pi) - math.pi
+
+                    v = K_rho * rho
+                    w = K_alpha * alpha + K_beta * beta
+
                     if abs(v) < 1e-3:
                         gamma = 0.0
                     else:
-                        gamma = math.atan((L*w)/v)
+                        gamma = math.atan((L * w) / v)
 
+                    # Saturations
+                    gamma = max(min(gamma, 0.5), -0.5)
+                    v = min(v, 0.3)
 
-                    if gamma > 0.5:
-                        gamma = 0.5
-                    elif gamma < -0.5:
-                        gamma = -0.5
-                    if v > 0.3:
-                        v = 0.3
-                
+                    # Odométrie
                     dl = (limo.GetLeftWheelOdeom() - odopresleft) / 1000.0
                     dr = (limo.GetRightWheelOdom() - odopresright) / 1000.0
                     odopresleft = limo.GetLeftWheelOdeom()
                     odopresright = limo.GetRightWheelOdom()
-                
-                    limo.SetMotionCommand(linear_vel=v, steering_angle=gamma)
 
                     delta_theta = (dr - dl) / 0.16879
                     d = (dl + dr) / 2
-                    x_prime = d * math.cos(theta)
-                    y_prime = d * math.sin(theta)
-                    theta_prime = delta_theta
-                    x = x + x_prime
-                    y = y + y_prime
-                    theta = theta + theta_prime
-                    self.x_g = x_init-x
-                    self.y_g = y_init-y
-                    self.theta_g = theta_init-theta
+
+                    x += d * math.cos(theta)
+                    y += d * math.sin(theta)
+                    theta += delta_theta
+                    theta = (theta + math.pi) % (2 * math.pi) - math.pi
+
+                    limo.SetMotionCommand(linear_vel=v, steering_angle=gamma)
+
+                    self.x_g = x
+                    self.y_g = y
+                    self.theta_g = theta
+
+                    time.sleep(0.05)
+
+                limo.SetMotionCommand(linear_vel=0, steering_angle=0)
+                self.robot_status = "Stopped"
+                print("Robot reached target!")
 
             except Exception as e:
                 print(f"Error in robot_thread: {e}")
-                self.queue.put("Error")  # Placez un indicateur d'erreur dans la file d'attente
-                raise  # Ajoutez cette ligne pour afficher la trace complète de l'erreur
+                self.queue.put("Error")
 
-        self.thread = threading.Thread(target=robot_thread)
-        self.thread.start()
+                self.thread = threading.Thread(target=robot_thread)
+                self.thread.start()
 
     def stop_robot(self):
 
