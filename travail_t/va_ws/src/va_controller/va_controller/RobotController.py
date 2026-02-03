@@ -1,98 +1,180 @@
-from tkinter import messagebox
-import subprocess
 import math
-from pylimo import limo
 import time
 import threading
 from queue import Queue
+from tkinter import messagebox
 
-def start_robot(self):
+from pylimo import limo
 
-    if self.thread is not None and self.thread.is_alive():
-        print("Robot is already running.")
-        return
 
-    self.robot_status = "Started"
-    print("Robot started")
+class RobotController:
 
-    def robot_thread():
-        try:
-            L = 0.2
-            K_rho = 0.5
-            K_alpha = 1.5
-            K_beta = -0.6
+    def __init__(self):
+        # état robot
+        self.robot_status = "Stopped"
+        self.thread = None
+        self.queue = Queue()
 
-            # position initiale
-            x = -1
-            y = -1
-            theta = 0
+        # état estimé
+        self.x_g = 0.0
+        self.y_g = 0.0
+        self.theta_g = 0.0
 
-            # objectif
-            x_goal = 0
-            y_goal = 0
-            theta_goal = 0
-            t0 = time.time()
-            while self.robot_status != "Stopped":
-                if time.time() - t0 > 3.0:
-                    self.x_goal = 2.0
-                    self.y_goal = 0.0
+        # objectif
+        self.x_goal = 0.0
+        self.y_goal = 0.0
+        self.theta_goal = 0.0
 
-            limo.SetMotionCommand(linear_vel=0, steering_angle=0)
-            time.sleep(1)
+        # robot
+        self.limo = limo.LIMO()
 
-            odopresleft = limo.GetLeftWheelOdeom()
-            odopresright = limo.GetRightWheelOdom()
+    # =========================
+    # Définir un objectif
+    # =========================
+    def set_goal(self, x, y, theta=0.0):
+        self.x_goal = float(x)
+        self.y_goal = float(y)
+        self.theta_goal = float(theta)
+        print(f"New goal set: x={x}, y={y}, theta={theta}")
 
-            while self.robot_status != "Stopped":
-                rho = math.sqrt((x_goal - x)**2 + (y_goal - y)**2)
-                if rho < 0.05:
-                    break
+    # =========================
+    # Démarrage du robot
+    # =========================
+    def start_robot(self):
 
-                alpha = math.atan2(y_goal - y, x_goal - x) - theta
-                alpha = (alpha + math.pi) % (2 * math.pi) - math.pi
+        if self.thread is not None and self.thread.is_alive():
+            print("Robot already running.")
+            return
 
-                beta = theta_goal - theta - alpha
-                beta = (beta + math.pi) % (2 * math.pi) - math.pi
+        self.robot_status = "Started"
+        print("Robot started")
 
-                v = K_rho * rho
-                w = K_alpha * alpha + K_beta * beta
-
-                if abs(v) < 1e-3:
-                    gamma = 0.0
-                else:
-                    gamma = math.atan((L * w) / v)
-
-                gamma = max(min(gamma, 0.5), -0.5)
-                v = min(v, 0.3)
-
-                dl = (limo.GetLeftWheelOdeom() - odopresleft) / 1000.0
-                dr = (limo.GetRightWheelOdom() - odopresright) / 1000.0
-                odopresleft = limo.GetLeftWheelOdeom()
-                odopresright = limo.GetRightWheelOdom()
-                
+        def robot_thread():
+            try:
+                # paramètres robot (Ackermann)
+                L = 0.2        # empattement
                 dt = 0.05
 
-                x += v * math.cos(theta) * dt
-                y += v * math.sin(theta) * dt
-                theta += (v / L) * math.tan(gamma) * dt
-                theta = (theta + math.pi) % (2 * math.pi) - math.pi
+                # gains
+                K_rho = 0.6
+                K_alpha = 1.5
+                K_beta = -0.6
 
-                limo.SetMotionCommand(linear_vel=v, steering_angle=gamma)
+                # état initial (local)
+                x = self.x_g
+                y = self.y_g
+                theta = self.theta_g
 
-                self.x_g = x
-                self.y_g = y
-                self.theta_g = theta
+                self.limo.SetMotionCommand(0.0, 0.0)
+                time.sleep(1.0)
 
-                time.sleep(0.05)
+                while self.robot_status == "Started":
 
-            limo.SetMotionCommand(linear_vel=0, steering_angle=0)
+                    # erreur position
+                    dx = self.x_goal - x
+                    dy = self.y_goal - y
+                    rho = math.hypot(dx, dy)
+
+                    if rho < 0.05:
+                        break
+
+                    # angles
+                    alpha = math.atan2(dy, dx) - theta
+                    alpha = (alpha + math.pi) % (2 * math.pi) - math.pi
+
+                    beta = self.theta_goal - theta - alpha
+                    beta = (beta + math.pi) % (2 * math.pi) - math.pi
+
+                    # commandes
+                    v = K_rho * rho
+                    w = K_alpha * alpha + K_beta * beta
+
+                    # Ackermann
+                    if abs(v) < 1e-3:
+                        gamma = 0.0
+                    else:
+                        gamma = math.atan((L * w) / v)
+
+                    # saturations
+                    v = min(v, 0.3)
+                    gamma = max(min(gamma, 0.5), -0.5)
+
+                    # intégration cinématique Ackermann
+                    x += v * math.cos(theta) * dt
+                    y += v * math.sin(theta) * dt
+                    theta += (v / L) * math.tan(gamma) * dt
+                    theta = (theta + math.pi) % (2 * math.pi) - math.pi
+
+                    # envoyer commande
+                    self.limo.SetMotionCommand(v, gamma)
+
+                    # publier pour l'interface
+                    self.x_g = x
+                    self.y_g = y
+                    self.theta_g = theta
+
+                    # debug clair
+                    print(f"x={x:.3f} y={y:.3f} theta={theta:.3f} | v={v:.2f} gamma={gamma:.2f}")
+
+                    time.sleep(dt)
+
+                # arrêt
+                self.limo.SetMotionCommand(0.0, 0.0)
+                self.robot_status = "Stopped"
+                print("Robot stopped / target reached")
+
+            except Exception as e:
+                print("ERROR in robot thread:", e)
+                self.queue.put("Error")
+                self.robot_status = "Stopped"
+
+        # lancement du thread
+        self.thread = threading.Thread(target=robot_thread, daemon=True)
+        self.thread.start()
+
+    # =========================
+    # Arrêt du robot
+    # =========================
+    def stop_robot(self):
+        if self.thread is not None and self.thread.is_alive():
             self.robot_status = "Stopped"
-            print("Robot reached target!")
+            self.thread.join(timeout=1.0)
+            self.limo.SetMotionCommand(0.0, 0.0)
+            print("Robot stopped by user")
 
-        except Exception as e:
-            print(f"Error in robot_thread: {e}")
-            self.queue.put("Error")
-            self.robot_status = "Stopped"
+    # =========================
+    # ROS / outils (inchangés)
+    # =========================
+    def rvizMode(self):
+        self.start_ros_nodes()
 
-    self.thread = threading.Thread(target=robot_thread, daemon=True)
-    self.thread.start()
+    def turtlesimMode(self):
+        self.start_turtlesim_nodes()
+
+    def rqtGraph(self):
+        self.start_rqtGraph()
+
+    def start_ros_nodes(self):
+        import subprocess
+        cmd = "cd ~/agx_ws && source install/setup.bash && ros2 launch limo_bringup limo_start.launch.py"
+        subprocess.Popen(['gnome-terminal', '--', 'bash', '-c', cmd])
+
+    def start_turtlesim_nodes(self):
+        import subprocess
+        subprocess.Popen(['gnome-terminal', '--', 'bash', '-c', "ros2 run turtlesim turtlesim_node"])
+
+    def start_rqtGraph(self):
+        import subprocess
+        subprocess.Popen(['gnome-terminal', '--', 'bash', '-c', "rqt_graph"])
+
+    # =========================
+    # Gestion erreurs
+    # =========================
+    def check_errors(self):
+        while not self.queue.empty():
+            err = self.queue.get()
+            if err == "Error":
+                messagebox.showerror(
+                    "Robot Error",
+                    "Communication error with LIMO.\nCheck USB / power / permissions."
+                )
