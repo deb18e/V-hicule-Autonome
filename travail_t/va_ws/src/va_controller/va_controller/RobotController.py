@@ -1,47 +1,89 @@
+#!/usr/bin/env python3
+# coding=UTF-8
+
 import math
 import time
 import threading
 from queue import Queue
 from tkinter import messagebox
 
-from pylimo import limo
+import rclpy
+from std_msgs.msg import Float32
+
+
+def wrap_to_pi(a):
+    return (a + math.pi) % (2 * math.pi) - math.pi
 
 
 class RobotController:
 
-    def __init__(self):
+    def __init__(self, ros_node):
+        """
+        ros_node : un Node ROS2 déjà créé dans le main.
+        On publie gamma et omega dessus.
+        """
+        self.node = ros_node
+
+        # publishers gamma et omega
+        self.pub_gamma = self.node.create_publisher(Float32, "/cmd_gamma", 10)
+        self.pub_omega = self.node.create_publisher(Float32, "/cmd_omega", 10)
+
         # état robot
         self.robot_status = "Stopped"
         self.thread = None
         self.queue = Queue()
 
-        # état estimé
+        # pose estimée (pour affichage UI)
         self.x_g = 0.0
         self.y_g = 0.0
         self.theta_g = 0.0
 
         # objectif
-        self.x_goal = 0.0
+        self.x_goal = 1.0
         self.y_goal = 0.0
         self.theta_goal = 0.0
 
-        # robot
-        self.limo = limo.LIMO()
+        # paramètres
+        self.L = 0.2         # empattement
+        self.dt = 0.05
+
+        # gains
+        self.K_rho = 0.6
+        self.K_alpha = 1.5
+        self.K_beta = -0.6
+
+        # saturations
+        self.gamma_max = 0.5
+        self.omega_max = 1.5
+
+        # debug
+        self.print_debug = True
 
     # =========================
-    # Définir un objectif
+    # Goal
     # =========================
     def set_goal(self, x, y, theta=0.0):
         self.x_goal = float(x)
         self.y_goal = float(y)
         self.theta_goal = float(theta)
-        print(f"New goal set: x={x}, y={y}, theta={theta}")
+        print(f"[GOAL] x={self.x_goal} y={self.y_goal} theta={self.theta_goal}")
 
     # =========================
-    # Démarrage du robot
+    # Publisher gamma/omega
+    # =========================
+    def publish_cmd(self, gamma, omega):
+        msg_g = Float32()
+        msg_w = Float32()
+        msg_g.data = float(gamma)
+        msg_w.data = float(omega)
+
+        self.pub_gamma.publish(msg_g)
+        self.pub_omega.publish(msg_w)
+
+    # =========================
+    # Start / Stop
     # =========================
     def start_robot(self):
-
         if self.thread is not None and self.thread.is_alive():
             print("Robot already running.")
             return
@@ -51,26 +93,13 @@ class RobotController:
 
         def robot_thread():
             try:
-                # paramètres robot (Ackermann)
-                L = 0.2        # empattement
-                dt = 0.05
-
-                # gains
-                K_rho = 0.6
-                K_alpha = 1.5
-                K_beta = -0.6
-
-                # état initial (local)
+                # état local
                 x = self.x_g
                 y = self.y_g
                 theta = self.theta_g
 
-                self.limo.SetMotionCommand(0.0, 0.0)
-                time.sleep(1.0)
-
                 while self.robot_status == "Started":
 
-                    # erreur position
                     dx = self.x_goal - x
                     dy = self.y_goal - y
                     rho = math.hypot(dx, dy)
@@ -78,48 +107,45 @@ class RobotController:
                     if rho < 0.05:
                         break
 
-                    # angles
-                    alpha = math.atan2(dy, dx) - theta
-                    alpha = (alpha + math.pi) % (2 * math.pi) - math.pi
+                    # erreurs d’angle
+                    alpha = wrap_to_pi(math.atan2(dy, dx) - theta)
+                    beta = wrap_to_pi(self.theta_goal - theta - alpha)
 
-                    beta = self.theta_goal - theta - alpha
-                    beta = (beta + math.pi) % (2 * math.pi) - math.pi
+                    # commande angulaire (omega)
+                    omega = self.K_alpha * alpha + self.K_beta * beta
+                    omega = max(min(omega, self.omega_max), -self.omega_max)
 
-                    # commandes
-                    v = K_rho * rho
-                    w = K_alpha * alpha + K_beta * beta
-
-                    # Ackermann
-                    if abs(v) < 1e-3:
+                    # on choisit une vitesse "virtuel" v pour définir gamma
+                    # (car sur Ackermann : gamma = atan(L*omega / v))
+                    v_virtual = min(self.K_rho * rho, 0.3)
+                    if abs(v_virtual) < 1e-3:
                         gamma = 0.0
                     else:
-                        gamma = math.atan((L * w) / v)
+                        gamma = math.atan((self.L * omega) / v_virtual)
 
-                    # saturations
-                    v = min(v, 0.3)
-                    gamma = max(min(gamma, 0.5), -0.5)
+                    gamma = max(min(gamma, self.gamma_max), -self.gamma_max)
 
-                    # intégration cinématique Ackermann
-                    x += v * math.cos(theta) * dt
-                    y += v * math.sin(theta) * dt
-                    theta += (v / L) * math.tan(gamma) * dt
-                    theta = (theta + math.pi) % (2 * math.pi) - math.pi
+                    # Publier la commande (gamma, omega)
+                    self.publish_cmd(gamma, omega)
 
-                    # envoyer commande
-                    self.limo.SetMotionCommand(v, gamma)
+                    # Mise à jour "simulation" juste pour affichage UI
+                    # On utilise v_virtual pour intégrer (affichage seulement)
+                    x += v_virtual * math.cos(theta) * self.dt
+                    y += v_virtual * math.sin(theta) * self.dt
+                    theta += omega * self.dt
+                    theta = wrap_to_pi(theta)
 
-                    # publier pour l'interface
                     self.x_g = x
                     self.y_g = y
                     self.theta_g = theta
 
-                    # debug clair
-                    print(f"x={x:.3f} y={y:.3f} theta={theta:.3f} | v={v:.2f} gamma={gamma:.2f}")
+                    if self.print_debug:
+                        print(f"x={x:.3f} y={y:.3f} th={theta:.3f} | rho={rho:.3f} alpha={alpha:.3f} beta={beta:.3f} | omega={omega:.3f} gamma={gamma:.3f}")
 
-                    time.sleep(dt)
+                    time.sleep(self.dt)
 
-                # arrêt
-                self.limo.SetMotionCommand(0.0, 0.0)
+                # stop robot
+                self.publish_cmd(0.0, 0.0)
                 self.robot_status = "Stopped"
                 print("Robot stopped / target reached")
 
@@ -127,23 +153,20 @@ class RobotController:
                 print("ERROR in robot thread:", e)
                 self.queue.put("Error")
                 self.robot_status = "Stopped"
+                self.publish_cmd(0.0, 0.0)
 
-        # lancement du thread
         self.thread = threading.Thread(target=robot_thread, daemon=True)
         self.thread.start()
 
-    # =========================
-    # Arrêt du robot
-    # =========================
     def stop_robot(self):
         if self.thread is not None and self.thread.is_alive():
             self.robot_status = "Stopped"
             self.thread.join(timeout=1.0)
-            self.limo.SetMotionCommand(0.0, 0.0)
+            self.publish_cmd(0.0, 0.0)
             print("Robot stopped by user")
 
     # =========================
-    # ROS / outils
+    # Modes (tes fonctions)
     # =========================
     def rvizMode(self):
         self.start_ros_nodes()
@@ -168,13 +191,10 @@ class RobotController:
         subprocess.Popen(['gnome-terminal', '--', 'bash', '-c', "rqt_graph"])
 
     # =========================
-    # Gestion erreurs
+    # Erreurs
     # =========================
     def check_errors(self):
         while not self.queue.empty():
             err = self.queue.get()
             if err == "Error":
-                messagebox.showerror(
-                    "Robot Error",
-                    "Communication error with LIMO.\nCheck USB / power / permissions."
-                )
+                messagebox.showerror("Robot Error", "Erreur communication / thread robot.")
