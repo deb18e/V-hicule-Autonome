@@ -44,7 +44,7 @@ class RobotController():
 
                 time.sleep(1)
 
-                while x < 0.05 or y < 0.05 or self.robot_status != "Stopped":
+                while (abs(x) > 0.05 or abs(y) > 0.05) and self.robot_status != "Stopped":
                     if self.robot_status == "Stopped":
                         break
                     rho = math.sqrt(pow(x, 2) + pow(y, 2))
@@ -53,7 +53,11 @@ class RobotController():
 
                     w = Kbeta * beta + Kalpha * alpha
                     v = Krho * rho
-                    gamma = math.atan((L * w) / v)
+                    if abs(v) < 1e-3:
+                        gamma = 0.0
+                    else:
+                        gamma = math.atan((L*w)/v)
+
 
                     if gamma > 0.5:
                         gamma = 0.5
