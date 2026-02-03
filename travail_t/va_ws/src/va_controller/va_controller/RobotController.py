@@ -143,7 +143,7 @@ class RobotController:
             print("Robot stopped by user")
 
     # =========================
-    # ROS / outils (inchangés)
+    # ROS / outils
     # =========================
     def rvizMode(self):
         self.start_ros_nodes()
