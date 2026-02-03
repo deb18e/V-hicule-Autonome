@@ -1,19 +1,7 @@
-#!/usr/bin/env python3
-# coding=UTF-8
 import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
 from PIL import Image, ImageTk
-import subprocess
-import rclpy
-from rclpy.node import Node
-from std_msgs.msg import Float64
-import math
-from pylimo import limo
-import time
-import threading
-from queue import Queue
-from tkinter import StringVar
 
 
 class RobotControlUI:
