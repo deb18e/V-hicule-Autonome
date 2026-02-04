@@ -7,8 +7,8 @@ from tkinter import ttk, messagebox
 import rclpy
 from rclpy.node import Node
 
-from RobotController import RobotController
-from RobotControlUI import RobotControlUI
+from .RobotController import RobotController
+from .RobotControlUI import RobotControlUI
 
 
 class AppNode(Node):
@@ -44,16 +44,12 @@ def main():
     root.protocol("WM_DELETE_WINDOW", on_close)
 
     def periodic():
-        # UI
         ui.update_coordinates()
         robot_controller.check_errors()
-
-        # ROS spin
         rclpy.spin_once(node, timeout_sec=0.0)
+        root.after(100, periodic)
 
-        root.after(50, periodic)
-
-    root.after(50, periodic)
+    root.after(100, periodic)
     root.mainloop()
 
     node.destroy_node()

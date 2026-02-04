@@ -133,4 +133,38 @@ class RobotControlUI:
             background='white'
         ).grid(row=10, column=0, columnspan=3, sticky=tk.W, padx=10, pady=(10, 0))
 
+    # =========================
+    # Mise à jour coordonnées
+    # =========================
+    def update_coordinates(self):
+        self.x_var.set(f"{self.robot_controller.x_g:.2f}")
+        self.y_var.set(f"{self.robot_controller.y_g:.2f}")
+        self.theta_var.set(f"{self.robot_controller.theta_g:.2f}")
 
+    # =========================
+    # Actions UI
+    # =========================
+    def send_start_command(self):
+        self.robot_controller.start_robot()
+
+    def send_stop_command(self):
+        self.robot_controller.stop_robot()
+
+    def send_rviz_command(self):
+        self.robot_controller.rvizMode()
+
+    def send_turtlesim_command(self):
+        self.robot_controller.turtlesimMode()
+
+    def send_rqtgraph_command(self):
+        self.robot_controller.rqtGraph()
+
+    def set_goal_from_ui(self):
+        try:
+            xg = float(self.goal_x_var.get())
+            yg = float(self.goal_y_var.get())
+            tg = float(self.goal_theta_var.get())
+            self.robot_controller.set_goal(xg, yg, tg)
+            messagebox.showinfo("Goal", f"Goal set to: ({xg}, {yg}, {tg})")
+        except Exception as e:
+            messagebox.showerror("Goal error", f"Invalid goal values.\n{e}")

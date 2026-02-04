@@ -8,26 +8,17 @@ from queue import Queue
 from tkinter import messagebox
 
 from geometry_msgs.msg import Twist
-from nav_msgs.msg import Odometry
 
 
 def wrap_to_pi(a):
     return (a + math.pi) % (2 * math.pi) - math.pi
 
 
-def yaw_from_quaternion(q):
-    # q: geometry_msgs/Quaternion
-    # yaw = atan2(2(wz + xy), 1 - 2(y^2 + z^2))
-    siny_cosp = 2.0 * (q.w * q.z + q.x * q.y)
-    cosy_cosp = 1.0 - 2.0 * (q.y * q.y + q.z * q.z)
-    return math.atan2(siny_cosp, cosy_cosp)
-
-
 class RobotController:
     """
-    Contrôleur point-goal ROS2 :
-    - lit la pose réelle depuis /odom
-    - publie (v,w) sur /cmd_vel
+    Contrôleur point-goal (x*, y*, theta*) -> commande (v, w) publiée sur /cmd_vel
+    - v : linear.x (m/s)
+    - w : angular.z (rad/s)
     """
 
     def __init__(self, ros_node):
@@ -36,45 +27,32 @@ class RobotController:
         # Publisher cmd_vel
         self.pub_cmd_vel = self.node.create_publisher(Twist, "/cmd_vel", 10)
 
-        # Subscriber odom
-        self.sub_odom = self.node.create_subscription(Odometry, "/odom", self.odom_cb, 10)
-
         # Thread / état
         self.robot_status = "Stopped"
         self.thread = None
         self.queue = Queue()
 
-        # Pose réelle (mise à jour par /odom)
+        # Pose affichée (estimation interne pour UI)
         self.x_g = 0.0
         self.y_g = 0.0
         self.theta_g = 0.0
-        self.odom_ok = False
 
         # Goal
         self.x_goal = 1.0
         self.y_goal = 0.0
         self.theta_goal = 0.0
 
-        # Gains
+        # Paramètres / gains
         self.dt = 0.05
         self.K_rho = 0.8
         self.K_alpha = 2.0
         self.K_beta = -0.7
 
         # Saturations
-        self.v_max = 0.25
-        self.w_max = 1.2
+        self.v_max = 0.30     # m/s
+        self.w_max = 1.50     # rad/s
 
         self.print_debug = True
-
-    # =========================
-    # Odom callback
-    # =========================
-    def odom_cb(self, msg: Odometry):
-        self.x_g = float(msg.pose.pose.position.x)
-        self.y_g = float(msg.pose.pose.position.y)
-        self.theta_g = float(yaw_from_quaternion(msg.pose.pose.orientation))
-        self.odom_ok = True
 
     # =========================
     # Goal
@@ -95,7 +73,7 @@ class RobotController:
         self.pub_cmd_vel.publish(msg)
 
     # =========================
-    # Start / Stop
+    # Start
     # =========================
     def start_robot(self):
         if self.thread is not None and self.thread.is_alive():
@@ -103,53 +81,52 @@ class RobotController:
             return
 
         self.robot_status = "Started"
-        print("Robot started (needs /odom and publishes /cmd_vel)")
+        print("Robot started (v,w) -> /cmd_vel")
 
         def robot_thread():
             try:
-                # Attendre /odom (sinon contrôleur aveugle)
-                t0 = time.time()
-                while not self.odom_ok and (time.time() - t0) < 3.0 and self.robot_status == "Started":
-                    time.sleep(0.05)
-
-                if not self.odom_ok:
-                    print("ERROR: No /odom received. Controller cannot work.")
-                    self.queue.put("NoOdom")
-                    self.robot_status = "Stopped"
-                    self.publish_cmd(0.0, 0.0)
-                    return
+                x = self.x_g
+                y = self.y_g
+                theta = self.theta_g
 
                 while self.robot_status == "Started":
-                    # lire pose réelle (mise à jour par callback)
-                    x = self.x_g
-                    y = self.y_g
-                    theta = self.theta_g
 
                     dx = self.x_goal - x
                     dy = self.y_goal - y
                     rho = math.hypot(dx, dy)
 
+                    # stop proche du but
                     if rho < 0.05:
                         break
 
                     alpha = wrap_to_pi(math.atan2(dy, dx) - theta)
                     beta = wrap_to_pi(self.theta_goal - theta - alpha)
 
+                    # Commande (v,w)
                     v = self.K_rho * rho
                     w = self.K_alpha * alpha + self.K_beta * beta
 
-                    # saturations
+                    # Saturations
                     v = max(min(v, self.v_max), -self.v_max)
                     w = max(min(w, self.w_max), -self.w_max)
 
-                    # publier
+                    # Publier cmd_vel
                     self.publish_cmd(v, w)
+
+                    # Mise à jour d'état (pour UI seulement)
+                    x += v * math.cos(theta) * self.dt
+                    y += v * math.sin(theta) * self.dt
+                    theta = wrap_to_pi(theta + w * self.dt)
+
+                    self.x_g = x
+                    self.y_g = y
+                    self.theta_g = theta
 
                     if self.print_debug:
                         print(
-                            f"odom: x={x:.3f} y={y:.3f} th={theta:.3f} | "
+                            f"x={x:.3f} y={y:.3f} th={theta:.3f} | "
                             f"rho={rho:.3f} alpha={alpha:.3f} beta={beta:.3f} | "
-                            f"cmd: v={v:.2f} w={w:.2f}"
+                            f"v={v:.2f} w={w:.2f}"
                         )
 
                     time.sleep(self.dt)
@@ -168,6 +145,9 @@ class RobotController:
         self.thread = threading.Thread(target=robot_thread, daemon=True)
         self.thread.start()
 
+    # =========================
+    # Stop
+    # =========================
     def stop_robot(self):
         if self.thread is not None and self.thread.is_alive():
             self.robot_status = "Stopped"
@@ -176,7 +156,7 @@ class RobotController:
             print("Robot stopped by user")
 
     # =========================
-    # ROS tools (inchangés)
+    # Outils (inchangés)
     # =========================
     def rvizMode(self):
         self.start_ros_nodes()
@@ -201,12 +181,10 @@ class RobotController:
         subprocess.Popen(['gnome-terminal', '--', 'bash', '-c', "rqt_graph"])
 
     # =========================
-    # Errors
+    # Erreurs
     # =========================
     def check_errors(self):
         while not self.queue.empty():
             err = self.queue.get()
-            if err == "NoOdom":
-                messagebox.showerror("ROS Error", "Aucun /odom reçu. Lance le bringup et vérifie le topic /odom.")
-            elif err == "Error":
-                messagebox.showerror("Robot Error", "Erreur thread / ROS.")
+            if err == "Error":
+                messagebox.showerror("Robot Error", "Erreur thread / commande / communication.")
